@@ -1,20 +1,26 @@
 {
   "name": "Tournesol Extension",
-  "version": "1.3",
+  "version": "1.4",
   "description": "Open Tournesol directly from Youtube",
-  "permissions": ["contextMenus", "activeTab"],
+  "permissions": ["https://tournesol.app/", "contextMenus", "activeTab"],
+  "manifest_version": 2,
+  "icons": {
+    "64": "favicon64.png",
+    "512": "favicon512.png"
+  },
   "background": {
     "scripts": ["background.js"],
     "persistent": false
   },
   "browser_action": {
     "default_icon": "favicon.png",
-    "default_title": "Contribute",
     "default_popup": "menu.html"
   },
-  "manifest_version": 2,
-  "icons": {
-    "64": "favicon64.png",
-    "512": "favicon512.png"
-  }
+  "content_scripts": [
+    {
+      "matches": ["https://*.youtube.com/"],
+      "js": ["addTournesolRecommendations.js"],
+      "css": ["addTournesolRecommendations.css"]
+    }
+  ]
 }

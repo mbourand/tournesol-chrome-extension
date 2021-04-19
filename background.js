@@ -15,3 +15,14 @@ chrome.contextMenus.onClicked.addListener(function (e, tab) {
     chrome.tabs.update(tab.id, { active: true });
   }
 });
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  fetch(
+    'https://tournesol.app/api/v2/videos/search_tournesol/?importance=100&reliability=100&engaging=100&better_habits=1000&days_ago_lte=21&language=en&limit=4',
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      chrome.tabs.sendMessage(sender.tab.id, { data: data.results });
+    });
+});

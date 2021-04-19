@@ -1,0 +1,57 @@
+#tournesol_container {
+  width: calc(100% + 24px);
+  padding: 6px;
+  margin-bottom: 16px;
+  margin-top: 36px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  border: solid 4px #fdd835;
+  background: #fdd83511;
+  justify-content: space-between;
+}
+
+#tournesol_title {
+  color: #fdd835;
+  position: absolute;
+  left: 0px;
+  top: -32px;
+  font-weight: normal;
+}
+
+#tournesol_link {
+  color: #fdd835;
+  position: absolute;
+  right: 0px;
+  top: -20px;
+}
+
+.video_box {
+  position: relative;
+}
+
+.video_thumb {
+  width: 100%;
+  background: green;
+  margin-bottom: 8px;
+}
+
+.video_title {
+  color: white;
+  margin-bottom: 12px;
+  font-weight: normal;
+}
+
+.video_link {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.video_text {
+  color: white;
+  font-weight: normal;
+}

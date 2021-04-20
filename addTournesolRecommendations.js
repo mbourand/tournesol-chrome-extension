@@ -35,7 +35,8 @@ chrome.runtime.onMessage.addListener(function ({ data }, sender, sendResponse) {
   function make_video_box(video) {
     const video_box = document.createElement('div');
     video_box.className = 'video_box';
-    video_box.style.width = video_box_width + 'px';
+    video_box.style.width =
+      video_box_width > 10 ? video_box_width + 'px' : '24%';
 
     const video_thumb = document.createElement('img');
     video_thumb.className = 'video_thumb';

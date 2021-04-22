@@ -1,0 +1,21 @@
+button#tournesol-rate-button
+{
+	background: transparent;
+	border: 1px solid #fdd835;
+	border-radius: 2px;
+	cursor: pointer;
+	font-family: 'Roboto', 'Noto', sans-serif;
+	color: #fdd835;
+	margin-left: 10px;
+	margin-right: 10px;
+	display: inline-block;
+	vertical-align: middle;
+	text-transform: uppercase;
+	font-weight: 500;
+}
+
+img#tournesol-button-image
+{
+	margin-right: 6px;
+	vertical-align: middle;
+}

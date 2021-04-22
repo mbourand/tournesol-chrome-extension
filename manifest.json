@@ -21,6 +21,16 @@
       "matches": ["https://*.youtube.com/"],
       "js": ["addTournesolRecommendations.js"],
       "css": ["addTournesolRecommendations.css"]
+    },
+
+    {
+      "matches": ["https://*.youtube.com/watch?v=*"],
+      "js": ["addRateNowButton.js"],
+	  "css": ["addRateNowButton.css"],
+	  "run_at": "document_idle"
     }
+  ],
+  "web_accessible_resources": [
+	  "rate_now_icon.png"
   ]
 }

@@ -1,7 +1,7 @@
 button#tournesol-rate-button
 {
 	background: transparent;
-	border: 1px solid #fdd835;
+	border: none;
 	border-radius: 2px;
 	cursor: pointer;
 	font-family: 'Roboto', 'Noto', sans-serif;

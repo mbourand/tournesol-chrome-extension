@@ -1,6 +1,12 @@
 console.log('Content Script start');
 
-chrome.runtime.onMessage.addListener(function ({ data }, sender, sendResponse) {
+document.addEventListener("yt-navigate-finish", process);
+
+if (document.body) process();
+else document.addEventListener('DOMContentLoaded', process);
+
+function process()
+{
   // Verify that Tournesol's container has not yet been rendered
 
   old_container = document.getElementById('tournesol_container');
@@ -78,6 +84,6 @@ chrome.runtime.onMessage.addListener(function ({ data }, sender, sendResponse) {
   );
 
   contents.prepend(tournesol_container);
-});
+}
 
 chrome.runtime.sendMessage({ message: 'getTournesolRecommendations' });

@@ -1,40 +1,55 @@
-console.log('Content Script start');
+// Youtube doesnt completely load a video page, so content script doesn't lauch correctly without these events
 
-document.addEventListener("yt-navigate-finish", process);
+// This part is called on connection for the first time on youtube.com/*
+/* ********************************************************************* */
+
+document.addEventListener('yt-navigate-finish', process);
 
 if (document.body) process();
 else document.addEventListener('DOMContentLoaded', process);
 
+/* ********************************************************************* */
+
 function process()
 {
-  // Verify that Tournesol's container has not yet been rendered
+  // Only enable on youtube.com/
+  if (location.pathname != '/')
+	return;
 
+  // Send message to background.js to get recommendations from the API of Tournesol
+  chrome.runtime.sendMessage({ message: 'getTournesolRecommendations' });
+}
+
+// This part creates video boxes from API's response JSON
+chrome.runtime.onMessage.addListener(function ({ data }, sender, sendResponse) {
+
+  // Verify that Tournesol's container has not yet been rendered
   old_container = document.getElementById('tournesol_container');
   if (old_container) old_container.remove();
 
-  // Create new container
 
-  contents = document.getElementById('contents');
+  // Create new container
+  contents = document.getElementById('content').children.item('page-manager').children[0].children[7].children.item('primary').children[0].children.item('contents');
   tournesol_container = document.createElement('div');
   tournesol_container.id = 'tournesol_container';
 
-  // Add title
 
+  // Add title
   tournesol_title = document.createElement('h1');
   tournesol_title.id = 'tournesol_title';
   tournesol_title.append('Recommended by Tournesol:');
   tournesol_container.append(tournesol_title);
 
-  // Add title
 
+  // Add title
   tournesol_link = document.createElement('a');
   tournesol_link.id = 'tournesol_link';
   tournesol_link.href = 'https://tournesol.app';
   tournesol_link.append('learn more');
   tournesol_container.append(tournesol_link);
 
-  // Push videos into new container
 
+  // Push videos into new container
   video_box_height = contents.children[0].clientHeight;
   video_box_width = contents.children[0].clientWidth;
 
@@ -42,7 +57,7 @@ function process()
     const video_box = document.createElement('div');
     video_box.className = 'video_box';
     video_box.style.width =
-      video_box_width > 10 ? video_box_width + 'px' : '24%';
+  	video_box_width > 10 ? video_box_width + 'px' : '24%';
 
     const video_thumb = document.createElement('img');
     video_thumb.className = 'video_thumb';
@@ -77,13 +92,12 @@ function process()
     return video_box;
   }
 
-  console.log('making videos');
+  console.log('Making videos');
   data.forEach(
     (video, i) =>
-      console.log(i) || tournesol_container.append(make_video_box(video)),
+  	console.log(video.video_id) || tournesol_container.append(make_video_box(video)),
   );
 
   contents.prepend(tournesol_container);
-}
+});
 
-chrome.runtime.sendMessage({ message: 'getTournesolRecommendations' });

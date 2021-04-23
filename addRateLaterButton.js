@@ -1,8 +1,14 @@
 // Youtube doesnt completely load a video page, so content script doesn't lauch correctly without these events
-document.addEventListener("yt-navigate-finish", process);
+
+// This part is called on connection for the first time on youtube.com/*
+/* ********************************************************************* */
+
+document.addEventListener('yt-navigate-finish', process);
 
 if (document.body) process();
 else document.addEventListener('DOMContentLoaded', process);
+
+/* ********************************************************************* */
 
 // To wait for all needed elements to exist
 function process()

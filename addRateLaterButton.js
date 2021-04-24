@@ -10,7 +10,6 @@ else document.addEventListener('DOMContentLoaded', process);
 
 /* ********************************************************************* */
 
-
 function process()
 {
   // Get video id via URL

@@ -50,7 +50,6 @@
 .video_thumb {
   width: 100%;
   background: green;
-  margin-bottom: 6px;
 }
 
 .video_title {
@@ -98,4 +97,30 @@
 	position: absolute;
 	width: calc( 100% - var(--ytd-rich-grid-item-margin) - 26.01px );
 	top: -38px;
+}
+
+.time_span
+{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	color: white;
+	background-color: var(--yt-spec-static-overlay-background-heavy);
+	margin: 4px;
+	padding: 3px 4px;
+	height: 12px;
+	border-radius: 2px;
+	flex-direction: row;
+	align-items: center;
+	cursor: pointer;
+	font-size: var(--yt-badge-font-size, 1.2rem);
+    font-weight: 500;
+    line-height: var(--yt-badge-line-height-size, 1.2rem);
+    letter-spacing: var(--yt-badge-letter-spacing, 0.5px);
+}
+
+.thumb_div
+{
+	position: relative;
+	margin-bottom: 6px;
 }

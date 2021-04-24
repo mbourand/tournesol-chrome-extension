@@ -92,30 +92,59 @@ chrome.runtime.onMessage.addListener(function ({ data }, sender, sendResponse) {
     video_box_width = contents.children[0].clientWidth;
 
     function make_video_box(video) {
+      // Div whith everything about a video
       const video_box = document.createElement('div');
       video_box.className = 'video_box';
+
+
+      // Div with thumbnail and video duration
+      const thumb_div = document.createElement('div');
+      thumb_div.setAttribute('class', 'thumb_div');
+
 
       const video_thumb = document.createElement('img');
       video_thumb.className = 'video_thumb';
       video_thumb.src = `https://img.youtube.com/vi/${video.video_id}/mqdefault.jpg`;
-      video_box.append(video_thumb);
+      thumb_div.append(video_thumb);
 
+
+      const video_duration = document.createElement('p');
+      video_duration.setAttribute('class', 'time_span');
+
+      // Remove useless '00:' as hour value (we keep it if it is as minute value)
+      var formatted_video_duration = video.duration;
+      if (formatted_video_duration.startsWith('00:'))
+        formatted_video_duration = formatted_video_duration.substring(3, formatted_video_duration.length);
+
+      video_duration.append(document.createTextNode(formatted_video_duration));
+      thumb_div.append(video_duration);
+
+      video_box.append(thumb_div);
+
+
+      // Div with uploader name, video title and tournesol score
       const details_div = document.createElement('div');
       details_div.setAttribute('class', 'details_div');
+
 
       const video_title = document.createElement('h2');
       video_title.className = 'video_title';
       video_title.append(video.name);
       details_div.append(video_title);
 
+
       const video_uploader = document.createElement('p');
       video_uploader.className = 'video_text';
       video_uploader.append(video.uploader);
       details_div.append(video_uploader);
 
+
+      // Tournesol score
       const video_score = document.createElement('p');
       video_score.className = 'video_text';
       video_score.append('Rated ' + Number(video.score).toFixed(0) + ' points by ' + video.rating_n_experts + ' users');
+      details_div.append(video_score);
+
 
       const video_link = document.createElement('a');
       video_link.className = 'video_link';
@@ -123,7 +152,6 @@ chrome.runtime.onMessage.addListener(function ({ data }, sender, sendResponse) {
       video_box.append(video_link);
 
       video_box.append(details_div);
-      video_box.append(video_score);
 
       return video_box;
     }

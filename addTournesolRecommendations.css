@@ -1,15 +1,17 @@
 #tournesol_container {
+  margin-left: 0;
+  margin-right: 0;
   margin-top: 45px;
-  margin-bottom: 22px;
-  margin-left: calc(var(--ytd-rich-grid-item-margin) / 2);
-  margin-right: calc(var(--ytd-rich-grid-item-margin) / 2);
-  width: calc( 100% - var(--ytd-rich-grid-item-margin) - 26.01px );
+  margin-bottom: 16px; /* 40px for tournesol container - 24px for margin-top of youtube recommendations */
   display: flex;
   flex-direction: row;
   position: relative;
   border: solid 4px #F3BD00;
   background: #F3BD0011;
-  justify-content: space-between;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: calc(100% - var(--ytd-rich-grid-item-margin) * 2);
+  max-width: calc( var(--ytd-rich-grid-items-per-row) * (var(--ytd-rich-grid-item-max-width) + var(--ytd-rich-grid-item-margin)) );
 }
 
 #tournesol_title {
@@ -42,7 +44,7 @@
   margin-right: calc(var(--ytd-rich-grid-item-margin) / 2);
   margin-top: 6px;
   margin-bottom: 6px;
-  width: calc( 100% / var(--ytd-rich-grid-items-per-row) - var(--ytd-rich-grid-item-margin) - 0.01px );
+  width: calc( 100% / 4 - var(--ytd-rich-grid-item-margin) - 0.01px );
 }
 
 .video_thumb {

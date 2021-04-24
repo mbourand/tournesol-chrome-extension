@@ -10,15 +10,20 @@ else document.addEventListener('DOMContentLoaded', process);
 
 /* ********************************************************************* */
 
+
 function process()
 {
   // Only enable on youtube.com/
   if (location.pathname != '/')
-	  return;
+    return;
 
-  // Send message to background.js to get recommendations from the API of Tournesol
-  chrome.runtime.sendMessage({ message: 'getTournesolRecommendations' });
+  /* Send message to background.js to get recommendations from the API of Tournesol.
+  ** I put video amount here because we can get the value of --ytd-rich-grid-posts-per-row (css) to know how many videos we should retreive from api
+  */
+  chrome.runtime.sendMessage({ message: 'getTournesolRecommendations', video_amount: 4 });
 }
+
+
 // This part creates video boxes from API's response JSON
 chrome.runtime.onMessage.addListener(function ({ data }, sender, sendResponse) {
 
@@ -36,17 +41,7 @@ chrome.runtime.onMessage.addListener(function ({ data }, sender, sendResponse) {
     try
     {
       // Get parent element for the boxes in youtube page
-      console.log('called');
-      contents = document.getElementById('page-manager');
-      console.log(contents);
-      contents = contents.children[0];
-      console.log(contents);
-      contents = contents.children[7];
-      console.log(contents);
-      contents = contents.children.item('primary');
-      console.log(contents);
-      contents = contents.children[0];
-      console.log(contents);
+      contents = document.getElementById('page-manager').children[0].children[7].children.item('primary').children[0];
       if (!contents)
         return;
     }
@@ -99,7 +94,6 @@ chrome.runtime.onMessage.addListener(function ({ data }, sender, sendResponse) {
     function make_video_box(video) {
       const video_box = document.createElement('div');
       video_box.className = 'video_box';
-      video_box.style.width = (video_box_width > 10 ? video_box_width + 'px' : '24%');
 
       const video_thumb = document.createElement('img');
       video_thumb.className = 'video_thumb';

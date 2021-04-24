@@ -1,8 +1,9 @@
 #tournesol_container {
-  width: calc(100% + 24px);
-  padding: 6px;
-  margin-bottom: 16px;
   margin-top: 36px;
+  margin-bottom: 40px;
+  margin-left: calc(var(--ytd-rich-grid-item-margin) / 2);
+  margin-right: calc(var(--ytd-rich-grid-item-margin) / 2);
+  width: calc( 100% - var(--ytd-rich-grid-item-margin) - 26.01px );
   display: flex;
   flex-direction: row;
   position: relative;
@@ -28,18 +29,32 @@
 
 .video_box {
   position: relative;
+  margin-left: calc(var(--ytd-rich-grid-item-margin) / 2);
+  margin-right: calc(var(--ytd-rich-grid-item-margin) / 2);
+  margin-top: 6px;
+  margin-bottom: 6px;
+  width: calc( 100% / var(--ytd-rich-grid-items-per-row) - var(--ytd-rich-grid-item-margin) - 0.01px );
 }
 
 .video_thumb {
   width: 100%;
   background: green;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .video_title {
   color: white;
-  margin-bottom: 12px;
-  font-weight: normal;
+  margin-bottom: 6px;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  letter-spacing: var(--yt-link-letter-spacing, normal);
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  font-weight: 500;
+  display: -webkit-box;
+  line-height: 2rem;
 }
 
 .video_link {

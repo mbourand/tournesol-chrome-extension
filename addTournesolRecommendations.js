@@ -14,7 +14,7 @@ function process()
 {
   // Only enable on youtube.com/
   if (location.pathname != '/')
-	return;
+	  return;
 
   // Send message to background.js to get recommendations from the API of Tournesol
   chrome.runtime.sendMessage({ message: 'getTournesolRecommendations' });
@@ -36,7 +36,17 @@ chrome.runtime.onMessage.addListener(function ({ data }, sender, sendResponse) {
     try
     {
       // Get parent element for the boxes in youtube page
-      contents = document.getElementById('contents');
+      console.log('called');
+      contents = document.getElementById('page-manager');
+      console.log(contents);
+      contents = contents.children[0];
+      console.log(contents);
+      contents = contents.children[7];
+      console.log(contents);
+      contents = contents.children.item('primary');
+      console.log(contents);
+      contents = contents.children[0];
+      console.log(contents);
       if (!contents)
         return;
     }
@@ -119,7 +129,7 @@ chrome.runtime.onMessage.addListener(function ({ data }, sender, sendResponse) {
       console.log(video.video_id) || tournesol_container.append(make_video_box(video)),
     );
 
-    contents.prepend(tournesol_container);
+    contents.insertBefore(tournesol_container, contents.children.item('header').nextSibling);
   }, 100);
 });
 

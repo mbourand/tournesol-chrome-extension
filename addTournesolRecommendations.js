@@ -64,12 +64,24 @@ chrome.runtime.onMessage.addListener(function ({ data }, sender, sendResponse) {
     tournesol_container = document.createElement('div');
     tournesol_container.id = 'tournesol_container';
 
+    // Add inline-block div
+    inline_div = document.createElement('div');
+    inline_div.setAttribute('class', 'inline_div');
+
+    // Add tournesol icon
+    tournesol_icon = document.createElement('img');
+    tournesol_icon.setAttribute('id', 'tournesol_icon');
+    tournesol_icon.setAttribute('src', chrome.extension.getURL('rate_now_icon.png'));
+    tournesol_icon.setAttribute('width', '24');
+    inline_div.append(tournesol_icon);
 
     // Add title
     tournesol_title = document.createElement('h1');
     tournesol_title.id = 'tournesol_title';
-    tournesol_title.append('Recommended by Tournesol:');
-    tournesol_container.append(tournesol_title);
+    tournesol_title.append('Recommended by Tournesol');
+    inline_div.append(tournesol_title);
+
+    tournesol_container.append(inline_div);
 
 
     // Add title
@@ -77,7 +89,7 @@ chrome.runtime.onMessage.addListener(function ({ data }, sender, sendResponse) {
     tournesol_link.id = 'tournesol_link';
     tournesol_link.href = 'https://tournesol.app';
     tournesol_link.append('learn more');
-    tournesol_container.append(tournesol_link);
+    inline_div.append(tournesol_link);
 
 
     // Push videos into new container
@@ -131,4 +143,3 @@ chrome.runtime.onMessage.addListener(function ({ data }, sender, sendResponse) {
     contents.insertBefore(tournesol_container, contents.children.item('header').nextSibling);
   }, 100);
 });
-

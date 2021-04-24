@@ -38,16 +38,11 @@ function process()
 
 	rateNowButton.setAttribute("onclick", "window.open('https://tournesol.app/rate_later_add/" + videoId + "', '_blank')");
 
-    // Image td for better vertical alignment
-    var img_td = document.createElement("td");
-    img_td.setAttribute("valign", "middle");
-
     // Image
     var image = document.createElement("img");
     image.setAttribute("id", "tournesol-button-image");
     image.setAttribute("src", chrome.extension.getURL("rate_now_icon.png"));
     image.setAttribute("width", "20");
-    img_td.append(image);
     rateNowButton.append(img_td);
 
     // Text td for better vertical alignment

@@ -87,38 +87,37 @@ chrome.runtime.onMessage.addListener(function ({ data }, sender, sendResponse) {
     function make_video_box(video) {
       const video_box = document.createElement('div');
       video_box.className = 'video_box';
-      video_box.style.width =
-      video_box_width > 10 ? video_box_width + 'px' : '24%';
+      video_box.style.width = (video_box_width > 10 ? video_box_width + 'px' : '24%');
 
       const video_thumb = document.createElement('img');
       video_thumb.className = 'video_thumb';
       video_thumb.src = `https://img.youtube.com/vi/${video.video_id}/mqdefault.jpg`;
       video_box.append(video_thumb);
 
+      const details_div = document.createElement('div');
+      details_div.setAttribute('class', 'details_div');
+
       const video_title = document.createElement('h2');
       video_title.className = 'video_title';
       video_title.append(video.name);
-      video_box.append(video_title);
+      details_div.append(video_title);
 
-      const video_uploader = document.createElement('h2');
+      const video_uploader = document.createElement('p');
       video_uploader.className = 'video_text';
       video_uploader.append(video.uploader);
-      video_box.append(video_uploader);
+      details_div.append(video_uploader);
 
-      const video_ratings = document.createElement('h3');
-      video_ratings.className = 'video_text';
-      video_ratings.append('Rated by ' + video.rating_n_experts);
-      video_box.append(video_ratings);
-
-      const video_score = document.createElement('h3');
+      const video_score = document.createElement('p');
       video_score.className = 'video_text';
-      video_score.append('Tournesol score: ' + Number(video.score).toFixed(0));
-      video_box.append(video_score);
+      video_score.append('Rated ' + Number(video.score).toFixed(0) + ' points by ' + video.rating_n_experts + ' users');
 
       const video_link = document.createElement('a');
       video_link.className = 'video_link';
       video_link.href = '/watch?v=' + video.video_id;
-      video_box.append(video_link);
+      details_div.append(video_link);
+
+      video_box.append(details_div);
+      video_box.append(video_score);
 
       return video_box;
     }

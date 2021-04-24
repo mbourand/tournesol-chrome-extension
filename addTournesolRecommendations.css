@@ -55,6 +55,7 @@
   font-weight: 500;
   display: -webkit-box;
   line-height: 2rem;
+  max-height: 4rem;
 }
 
 .video_link {
@@ -66,7 +67,16 @@
   z-index: 1;
 }
 
-.video_text {
-  color: white;
-  font-weight: normal;
+.details_div {
+  position: relative;
+  cursor: pointer;
+}
+
+.video_text
+{
+	color: #aaa;
+	font-family: 'Roboto', 'Arial', sans-serif;
+	word-break: break-word;
+    font-size: 1.4rem;
+	font-weight: 400;
 }

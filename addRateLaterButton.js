@@ -21,7 +21,7 @@ function process()
     return;
 
   // Timer will run until needed elements are generated
-  var timer = window.setInterval(createButtonIsReady, 100);
+  var timer = window.setInterval(createButtonIsReady, 300);
 
 
   function createButtonIsReady() {

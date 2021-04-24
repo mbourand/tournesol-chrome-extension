@@ -1,19 +1,19 @@
 #tournesol_container {
   margin-top: 45px;
-  margin-bottom: 40px;
+  margin-bottom: 22px;
   margin-left: calc(var(--ytd-rich-grid-item-margin) / 2);
   margin-right: calc(var(--ytd-rich-grid-item-margin) / 2);
   width: calc( 100% - var(--ytd-rich-grid-item-margin) - 26.01px );
   display: flex;
   flex-direction: row;
   position: relative;
-  border: solid 4px #fed736;
-  background: #fed73611;
+  border: solid 4px #F3BD00;
+  background: #F3BD0011;
   justify-content: space-between;
 }
 
 #tournesol_title {
-  color: #fed736;
+  color: #F3BD00;
   font-family: 'Roboto', 'Arial', sans-serif;
   font-size: 22px;
   position: absolute;
@@ -23,7 +23,7 @@
 }
 
 #tournesol_link {
-  color: #fed736;
+  color: #F3BD00;
   font-family: 'Roboto', 'Arial', sans-serif;
   position: absolute;
   right: -40px;

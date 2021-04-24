@@ -126,7 +126,7 @@ chrome.runtime.onMessage.addListener(function ({ data }, sender, sendResponse) {
       const video_link = document.createElement('a');
       video_link.className = 'video_link';
       video_link.href = '/watch?v=' + video.video_id;
-      details_div.append(video_link);
+      video_box.append(video_link);
 
       video_box.append(details_div);
       video_box.append(video_score);

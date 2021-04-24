@@ -10,7 +10,6 @@ else document.addEventListener('DOMContentLoaded', process);
 
 /* ********************************************************************* */
 
-
 function process()
 {
   // Get video id via URL
@@ -21,15 +20,15 @@ function process()
     return;
 
   // Timer will run until needed elements are generated
-  var timer = window.setInterval(createButtonIsReady, 100);
+  var timer = window.setInterval(createButtonIsReady, 300);
 
 
   function createButtonIsReady() {
 
     /*
-	** Wait for needed elements to be generated
-	** It seems those elements are generated via javascript, so run-at document_idle in manifest is not enough to prevent errors
-	**
+    ** Wait for needed elements to be generated
+    ** It seems those elements are generated via javascript, so run-at document_idle in manifest is not enough to prevent errors
+    **
     ** Some ids on video pages are duplicated, so I take the first non-duplicated id and search in its childs the correct div to add the button
     ** Note: using .children[index] when child has no id
     */
@@ -39,6 +38,13 @@ function process()
       !document.getElementById('menu-container').children.item('menu').children[0].children.item('top-level-buttons'))
       return;
 
+    // If the button already exists, don't create a new one
+    if (document.getElementById('tournesol-rate-button'))
+    {
+      console.log('Button already exists');
+      window.clearInterval(timer);
+      return;
+    }
 
     console.log('Adding rate later button');
     window.clearInterval(timer);
@@ -47,7 +53,7 @@ function process()
     // Create Button
     var rateNowButton = document.createElement('button');
     rateNowButton.setAttribute('id', 'tournesol-rate-button');
-	rateNowButton.setAttribute('onclick', "window.open('https://tournesol.app/rate_later_add/" + videoId + "', '_blank')");
+    rateNowButton.setAttribute('onclick', "window.open('https://tournesol.app/rate_later_add/" + videoId + "', '_blank')");
 
 
     // Image td for better vertical alignment

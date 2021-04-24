@@ -18,7 +18,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://*.youtube.com/"],
+      "matches": ["https://*.youtube.com/*"],
       "js": ["addTournesolRecommendations.js"],
       "css": ["addTournesolRecommendations.css"]
     },

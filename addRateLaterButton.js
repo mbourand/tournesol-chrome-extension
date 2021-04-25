@@ -10,37 +10,38 @@ else document.addEventListener('DOMContentLoaded', process);
 
 /* ********************************************************************* */
 
-function process()
-{
+function process() {
   // Get video id via URL
   var videoId = new URL(location.href).searchParams.get('v');
 
   // Only enable on youtube.com/watch?v=* pages
-  if (!location.pathname.startsWith('/watch') || !videoId)
-    return;
+  if (!location.pathname.startsWith('/watch') || !videoId) return;
 
   // Timer will run until needed elements are generated
   var timer = window.setInterval(createButtonIsReady, 300);
 
-
   function createButtonIsReady() {
-
     /*
-    ** Wait for needed elements to be generated
-    ** It seems those elements are generated via javascript, so run-at document_idle in manifest is not enough to prevent errors
-    **
-    ** Some ids on video pages are duplicated, so I take the first non-duplicated id and search in its childs the correct div to add the button
-    ** Note: using .children[index] when child has no id
-    */
-    if (!document.getElementById('menu-container') ||
+     ** Wait for needed elements to be generated
+     ** It seems those elements are generated via javascript, so run-at document_idle in manifest is not enough to prevent errors
+     **
+     ** Some ids on video pages are duplicated, so I take the first non-duplicated id and search in its childs the correct div to add the button
+     ** Note: using .children[index] when child has no id
+     */
+    if (
+      !document.getElementById('menu-container') ||
       !document.getElementById('menu-container').children.item('menu') ||
-      !document.getElementById('menu-container').children.item('menu').children[0] ||
-      !document.getElementById('menu-container').children.item('menu').children[0].children.item('top-level-buttons'))
+      !document.getElementById('menu-container').children.item('menu')
+        .children[0] ||
+      !document
+        .getElementById('menu-container')
+        .children.item('menu')
+        .children[0].children.item('top-level-buttons')
+    )
       return;
 
     // If the button already exists, don't create a new one
-    if (document.getElementById('tournesol-rate-button'))
-    {
+    if (document.getElementById('tournesol-rate-button')) {
       console.log('Button already exists');
       window.clearInterval(timer);
       return;
@@ -49,17 +50,19 @@ function process()
     console.log('Adding rate later button');
     window.clearInterval(timer);
 
-
     // Create Button
     var rateNowButton = document.createElement('button');
     rateNowButton.setAttribute('id', 'tournesol-rate-button');
-    rateNowButton.setAttribute('onclick', "window.open('https://tournesol.app/rate_later_add/" + videoId + "', '_blank')");
-
+    rateNowButton.setAttribute(
+      'onclick',
+      "window.open('https://tournesol.app/rate_later_add/" +
+        videoId +
+        "', '_blank')",
+    );
 
     // Image td for better vertical alignment
     var img_td = document.createElement('td');
     img_td.setAttribute('valign', 'middle');
-
 
     // Image
     var image = document.createElement('img');
@@ -69,19 +72,19 @@ function process()
     img_td.append(image);
     rateNowButton.append(img_td);
 
-
     // Text td for better vertical alignment
     var text_td = document.createElement('td');
     text_td.setAttribute('valign', 'middle');
-
 
     // Text
     text_td.append(document.createTextNode('Rate Later'));
     rateNowButton.append(text_td);
 
-
     // Insert after like and dislike buttons
-    var div = document.getElementById('menu-container').children.item('menu').children[0].children.item('top-level-buttons');
+    var div = document
+      .getElementById('menu-container')
+      .children.item('menu')
+      .children[0].children.item('top-level-buttons');
     div.insertBefore(rateNowButton, div.children[2]);
   }
 }

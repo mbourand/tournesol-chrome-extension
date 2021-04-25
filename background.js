@@ -18,7 +18,8 @@ chrome.contextMenus.onClicked.addListener(function (e, tab) {
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   fetch(
-    'https://tournesol.app/api/v2/videos/search_tournesol/?importance=100&reliability=100&engaging=100&better_habits=1000&days_ago_lte=21&language=en&limit=' + request.video_amount,
+    'https://tournesol.app/api/v2/videos/search_tournesol/?importance=100&reliability=100&engaging=100&better_habits=1000&days_ago_lte=21&language=en&limit=' +
+      request.video_amount,
   )
     .then((response) => response.json())
     .then((data) => {

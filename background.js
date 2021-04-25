@@ -37,9 +37,9 @@ function getRandomSubarray(arr, size) {
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   fetch(
-    `https://tournesol.app/api/v2/videos/search_tournesol/?days_ago_lte=21&language=en&limit=${
-      3 * request.video_amount
-    }`,
+    `https://tournesol.app/api/v2/videos/search_tournesol/?days_ago_lte=21&language=${
+      request.language
+    }&limit=${3 * request.video_amount}`,
   )
     .then((response) => response.json())
     .then((data) => {

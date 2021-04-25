@@ -18,9 +18,13 @@ function process() {
    ** Send message to background.js to get recommendations from the API of Tournesol.
    ** I put video amount here because we can get the value of --ytd-rich-grid-posts-per-row (css) to know how many videos we should retreive from api
    */
+  const language =
+    localStorage.getItem('tournesol_extension_config_language') || 'en';
+
   chrome.runtime.sendMessage({
     message: 'getTournesolRecommendations',
     video_amount: 4,
+    language,
   });
 }
 
@@ -79,7 +83,21 @@ chrome.runtime.onMessage.addListener(function ({ data }, sender, sendResponse) {
     tournesol_title.append('Recommended by Tournesol');
     inline_div.append(tournesol_title);
 
-    tournesol_container.append(inline_div);
+    // Language options
+    const makeLanguageLink = (lang) => {
+      lang_option = document.createElement('a');
+      lang_option.className = 'language_option';
+      lang_option.href = '#';
+      lang_option.append(lang);
+      lang_option.onclick = () => {
+        console.log('hello world');
+        localStorage.setItem('tournesol_extension_config_language', lang);
+      };
+      return lang_option;
+    };
+    inline_div.append(makeLanguageLink('de'));
+    inline_div.append(makeLanguageLink('en'));
+    inline_div.append(makeLanguageLink('fr'));
 
     // Add title
     tournesol_link = document.createElement('a');
@@ -87,6 +105,8 @@ chrome.runtime.onMessage.addListener(function ({ data }, sender, sendResponse) {
     tournesol_link.href = 'https://tournesol.app';
     tournesol_link.append('learn more');
     inline_div.append(tournesol_link);
+
+    tournesol_container.append(inline_div);
 
     // Push videos into new container
     video_box_height = contents.children[0].clientHeight;
@@ -158,13 +178,7 @@ chrome.runtime.onMessage.addListener(function ({ data }, sender, sendResponse) {
       return video_box;
     }
 
-    console.log('Making videos');
-    data.forEach(
-      (video, i) =>
-        console.log(video.video_id) ||
-        tournesol_container.append(make_video_box(video)),
-    );
-    console.log(contents.children[0]);
+    data.forEach((video) => tournesol_container.append(make_video_box(video)));
     contents.insertBefore(tournesol_container, contents.children[1]);
   }, 300);
 });

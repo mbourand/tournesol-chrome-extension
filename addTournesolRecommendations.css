@@ -27,11 +27,19 @@
   font-weight: normal;
 }
 
+.language_option {
+  color: #f3bd00;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  float: right;
+  margin-top: 8px;
+  margin-left: 4px;
+}
+
 #tournesol_link {
   color: #f3bd00;
   font-family: 'Roboto', 'Arial', sans-serif;
   position: absolute;
-  right: -40px;
+  right: 0px;
   top: 20px;
 }
 
@@ -95,7 +103,7 @@
 
 .inline_div {
   position: absolute;
-  width: calc(100% - var(--ytd-rich-grid-item-margin) - 26.01px);
+  width: 100%;
   top: -38px;
 }
 

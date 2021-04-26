@@ -1,21 +1,19 @@
-button#tournesol-rate-button
-{
-	background: transparent;
-	border: none;
-	border-radius: 2px;
-	cursor: pointer;
-	font-family: 'Roboto', 'Noto', sans-serif;
-	color: #F3BD00;
-	margin-left: 10px;
-	margin-right: 10px;
-	display: inline-block;
-	vertical-align: middle;
-	text-transform: uppercase;
-	font-weight: 500;
+button#tournesol-rate-button {
+  background: transparent;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: 'Roboto', 'Noto', sans-serif;
+  color: #f3bd00;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 
-img#tournesol-button-image
-{
-	margin-right: 6px;
-	vertical-align: middle;
+img#tournesol-button-image {
+  margin-right: 6px;
+  vertical-align: middle;
 }
